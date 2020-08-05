@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','TaskController@index');
+Route::get('/','TaskController@index')->name('home');
 
 Route::get('/signup','SessionController@signup');
+Route::post('/signup','SessionController@sign');
+Route::get('/logout','SessionController@destroy');
+
 Route::get('/login','SessionController@login');
+Route::post('/login','SessionController@store');
