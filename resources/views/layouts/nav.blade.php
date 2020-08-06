@@ -4,8 +4,8 @@
       <a class="nav-link active" href="/">Home</a>
 
       @if (Auth::check())
-        <a class="nav-link" href="#">Task</a>
-      	<a class="nav-link ml-auto" href="#">{{ Auth::user()->email }}</a>
+        <a class="nav-link" href="/task">Task</a>
+      	<a class="nav-link ml-auto" href="/profile">Profile</a>
         <a class="nav-link" href="/logout">Logout</a>
       @else 
         <a class="nav-link ml-auto" style="position: right" href="/signup">Sign Up</a>
