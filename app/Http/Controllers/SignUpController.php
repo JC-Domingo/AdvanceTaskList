@@ -26,6 +26,7 @@ class SignUpController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'email' => 'required|email|unique:users,email',
+            'birthdate' => 'required',
             'password' => 'required|confirmed'
     	]);
 
@@ -33,6 +34,7 @@ class SignUpController extends Controller
             'firstname' => request('firstname'),
             'lastname' => request('lastname'),
             'email' => request('email'),
+            'birthdate' => request('birthdate'),
             'password' => bcrypt(request('password'))
         ]);
 

@@ -19,6 +19,8 @@ Route::get('/task','TaskController@task');
 
 Route::get('/profile','TaskController@profile');
 Route::post('/profile','TaskController@update');
+Route::get('/changepass','TaskController@changepass');
+Route::post('/changepass','TaskController@updatePass');
 
 Route::get('/signup','SignUpController@create');
 Route::post('/signup','SignUpController@sign');

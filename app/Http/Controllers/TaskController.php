@@ -8,6 +8,8 @@ use App\User;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Hash;
+
 class TaskController extends Controller
 {
     public function __construct()
@@ -28,12 +30,63 @@ class TaskController extends Controller
     public function update()
     {
         $update = User::where('id', '=', request('id'))->first();
-        $update->firstname = request('firstname');
-        $update->lastname = request('lastname');
-        $update->email = request('email');
+
+        $firstname = request('firstname');
+        $lastname = request('lastname');
+        $birthdate = request('birthdate');
+        $email = request('email');
+
+        if ( !$firstname == null){
+            $update->firstname = request('firstname');
+        } 
+        if ( !$lastname == null){
+            $update->lastname = request('lastname');
+        } 
+        if ( !$birthdate == null){
+            $update->birthdate = request('birthdate');
+        } 
+        if ( !$email == null){
+            $update->email = request('email');
+            $this->validate(request(), [
+                'email' => 'required|email|unique:users,email'
+            ]);
+        } 
+
         $update->save();
 
-        return view('profile.account');
+        return view('layouts.index');
+    }
+
+
+    public function updatePass()
+    {
+        $update = User::where('id', '=', request('id'))->first();
+
+        $dbpass = $update->password;
+        $password = request('oldpassword');
+
+        if (Hash::check($password, $dbpass)){
+            $this->validate(request(), [
+                'password' => 'required|confirmed'
+            ]);
+
+            $update->password = bcrypt(request('password'));
+            
+            $update->save();
+        
+            return view('layouts.index');
+        }
+        else{
+            return back()->withErrors([
+                'message' => 'Please check your old password and try again.'
+            ]);
+        }
+
+    }
+
+    public function changepass()
+    {
+        return view('profile.changepass');
     }
 
     public function task()

@@ -1,35 +1,59 @@
 @extends ('layouts.main')
 
 @section ('content')
-    <div class="col-sm-6 blog-main">
+	@include ('layouts.sidebar')
 
-    	<h1>User Information</h1>
+	&nbsp;
 
-		<form method="POST" action="/profile">
-			{{ csrf_field() }}
+    <div class="col-sm-7 blog-main">
 
-			<div class="form-group">
-				<label for="firstname">First Name:</label>
-			    <input type="text" class="form-control" id="firstname" name='firstname' value="{{ Auth::user()->firstname }}" required>
-			</div>
+    	<div style="border-style: solid; padding: 5%;">
+	    	<h2><b>User Information</b></h2>
+
+	    	<h5><b>Firstname: </b>{{ Auth::user()->firstname }}</h5>
+	    	<h5><b>Lastname: </b>{{ Auth::user()->lastname }}</h5>
+	    	<h5><b>Birthdate: </b>{{ Auth::user()->birthdate }}</h5>
+	    	<h5><b>Email: </b>{{ Auth::user()->email }}</h5>
+		</div>
+
+		&nbsp;
 
 
-			<div class="form-group">
-				<label for="lastname">Last Name:</label>
-			    <input type="text" class="form-control" id="lastname" name='lastname' value="{{ Auth::user()->lastname }}" required>
-			</div>
+    	<div style="border-style: solid; padding: 5%;">
+	    	<h2><b>Update User Information</b></h2>
 
-			<div class="form-group">
-				<label for="email">Email:</label>
-			    <input type="email" class="form-control" id="email" name='email' value="{{ Auth::user()->email }}" required>
-			</div>
+			<form method="POST" action="/profile">
+				{{ csrf_field() }}
 
-			<input type="hidden" name="id" value="{{ Auth::user()->id }}">
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Save Changes	</button>
-			</div>
+				<div class="form-group">
+					<label for="firstname">First Name:</label>
+				    <input type="text" class="form-control" id="firstname" name='firstname'>
+				</div>
 
-			@include ('layouts.errors')
-		</form>
+
+				<div class="form-group">
+					<label for="lastname">Last Name:</label>
+				    <input type="text" class="form-control" id="lastname" name='lastname'>
+				</div>
+
+				<div class="form-group">
+					<label for="birthdate">Birthdate:</label>
+				    <input type="date" class="form-control" id="birthdate" name='birthdate'>
+				</div>
+
+				<div class="form-group">
+					<label for="email">Email:</label>
+				    <input type="email" class="form-control" id="email" name='email'>
+				</div>
+
+				<input type="hidden" name="id" value="{{ Auth::user()->id }}">
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Save Changes	</button>
+				</div>
+
+				@include ('layouts.errors')
+			</form>
+		</div>
 	</div>
 @endsection
