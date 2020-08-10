@@ -23,11 +23,11 @@ class SignUpController extends Controller
     public function sign()
     {
     	$this->validate(request(), [
-            'firstname' => 'required',
-            'lastname' => 'required',
+            'firstname' => 'required|string|max:50',
+            'lastname' => 'required|string|max:50',
             'email' => 'required|email|unique:users,email',
             'birthdate' => 'required',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed|min:8|max:50'
     	]);
 
         $user = User::create([

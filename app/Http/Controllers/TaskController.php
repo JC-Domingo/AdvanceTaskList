@@ -37,19 +37,25 @@ class TaskController extends Controller
         $email = request('email');
 
         if ( !$firstname == null){
+            $this->validate(request(), [
+                'firstname' => 'required|string|max:50'
+            ]);
             $update->firstname = request('firstname');
         } 
         if ( !$lastname == null){
+            $this->validate(request(), [
+                'lastname' => 'required|string|max:50'
+            ]);
             $update->lastname = request('lastname');
         } 
         if ( !$birthdate == null){
             $update->birthdate = request('birthdate');
         } 
         if ( !$email == null){
-            $update->email = request('email');
             $this->validate(request(), [
                 'email' => 'required|email|unique:users,email'
             ]);
+            $update->email = request('email');
         } 
 
         $update->save();
@@ -67,7 +73,7 @@ class TaskController extends Controller
 
         if (Hash::check($password, $dbpass)){
             $this->validate(request(), [
-                'password' => 'required|confirmed'
+                'password' => 'required|confirmed|min:8|max:50'
             ]);
 
             $update->password = bcrypt(request('password'));

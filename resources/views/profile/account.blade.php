@@ -55,5 +55,5 @@
 				@include ('layouts.errors')
 			</form>
 		</div>
-	</div>
+	</div>	
 @endsection
