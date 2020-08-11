@@ -28,3 +28,7 @@ Route::post('/signup','SignUpController@sign');
 Route::get('/login','SessionController@login');
 Route::post('/login','SessionController@store');
 Route::get('/logout','SessionController@destroy');
+
+Route::prefix('api')->group(function() {
+	Route::resource('tasks', 'TaskController');
+});

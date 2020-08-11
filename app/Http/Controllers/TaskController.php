@@ -99,4 +99,29 @@ class TaskController extends Controller
     {
         return view('task.task');
     }
+
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'body' => 'required|max:500'
+        ]);
+
+        return Task::create([ 
+            'body' => request('body') 
+        ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Task  $task
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $task = Tasks::findOrFail($id);
+        $task->delete();
+        return 204;
+    }
 }
