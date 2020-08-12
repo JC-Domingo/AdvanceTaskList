@@ -2,7 +2,6 @@
 
 	<div style="border-style: solid; padding: 5%;">
 	  	
-
         <div class="container" id="root">
             <task-list></task-list>
         </div>  

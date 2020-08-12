@@ -1924,6 +1924,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'root',
   data: function data() {
@@ -1931,7 +1949,8 @@ __webpack_require__.r(__webpack_exports__);
       list: [],
       task: {
         id: '',
-        body: ''
+        body: '',
+        deadline: ''
       }
     };
   },
@@ -1941,6 +1960,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('api/tasks', this.task).then(function (res) {
         _this.task.body = '';
+        _this.task.deadline = '';
         _this.edit = false;
 
         _this.fetchTaskList();
@@ -19616,6 +19636,8 @@ var render = function() {
         }
       },
       [
+        _vm._m(1),
+        _vm._v(" "),
         _c("div", { staticClass: "input-group" }, [
           _c("input", {
             directives: [
@@ -19637,10 +19659,45 @@ var render = function() {
                 _vm.$set(_vm.task, "body", $event.target.value)
               }
             }
-          }),
-          _vm._v("\n\t\t\t \n\t\t\t"),
-          _vm._m(1)
-        ])
+          })
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.task.deadline,
+                expression: "task.deadline"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "date",
+              name: "birthdate",
+              autofocus: "",
+              required: ""
+            },
+            domProps: { value: _vm.task.deadline },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.task, "deadline", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _vm._m(3)
       ]
     )
   ])
@@ -19656,12 +19713,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "input-group-btn" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Add Task")]
-      )
+    return _c("div", { staticClass: "input-group" }, [
+      _c("h5", [_c("b", [_vm._v("Task:")])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group" }, [
+      _c("h5", [_c("b", [_vm._v("Set Deadline:")])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group" }, [
+      _c("span", { staticClass: "input-group-btn" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          [_vm._v("Add Task")]
+        )
+      ])
     ])
   }
 ]
@@ -31892,15 +31967,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!**********************************************!*\
   !*** ./resources/js/components/TaskList.vue ***!
   \**********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TaskList_vue_vue_type_template_id_0afd8bae___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TaskList.vue?vue&type=template&id=0afd8bae& */ "./resources/js/components/TaskList.vue?vue&type=template&id=0afd8bae&");
 /* harmony import */ var _TaskList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TaskList.vue?vue&type=script&lang=js& */ "./resources/js/components/TaskList.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _TaskList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _TaskList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -31930,7 +32004,7 @@ component.options.__file = "resources/js/components/TaskList.vue"
 /*!***********************************************************************!*\
   !*** ./resources/js/components/TaskList.vue?vue&type=script&lang=js& ***!
   \***********************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -97,19 +97,24 @@ class TaskController extends Controller
 
     public function task()
     {
-        return view('task.task');
+        $tasks = Task::latest()->get();
+
+        return view('task.task', compact('tasks'));
     }
 
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'body' => 'required|max:500'
+            'body' => 'required|max:500',
+            'deadline' => 'required'
         ]);
 
-        return Task::create([ 
-            'body' => request('body') 
-        ]);
+        auth()->user()->publish(
+            new Task(request(['body','deadline']))
+        );
+
+        return redirect('/');
     }
 
     /**
