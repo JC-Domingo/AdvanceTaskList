@@ -16,6 +16,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/app.css" rel="stylesheet">
+    <script>window.Laravel = { csrfToken: '{{ csrf_token() }}' }</script>
   </head>
 
   <body>

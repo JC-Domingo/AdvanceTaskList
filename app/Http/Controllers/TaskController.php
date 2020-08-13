@@ -14,10 +14,10 @@ class TaskController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index']);
+        $this->middleware('auth')->except(['main']);
     }
 
-    public function index()
+    public function main()
     {
     	return view('layouts.index');
     }
@@ -95,13 +95,15 @@ class TaskController extends Controller
         return view('profile.changepass');
     }
 
-    public function task()
+    public function tasks()
     {
-        $tasks = Task::latest()->get();
-
-        return view('task.task', compact('tasks'));
+        return view('task.task');
     }
 
+    public function index()
+    {
+        return Task::latest()->get();
+    }
 
     public function store(Request $request)
     {
@@ -117,15 +119,9 @@ class TaskController extends Controller
         return redirect('/');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        $task = Tasks::findOrFail($id);
+        $task = Task::findOrFail($id);
         $task->delete();
         return 204;
     }

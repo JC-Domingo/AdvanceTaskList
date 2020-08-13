@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','TaskController@index')->name('home');	
-Route::get('/home','TaskController@index');	
-Route::get('/task','TaskController@task');
+Route::get('/','TaskController@main')->name('home');	
+Route::get('/home','TaskController@main');	
+Route::get('/task','TaskController@tasks');
 
 Route::get('/profile','TaskController@profile');
 Route::post('/profile','TaskController@update');

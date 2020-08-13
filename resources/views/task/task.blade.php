@@ -2,5 +2,5 @@
 
 @section ('content')
 	@include ('task.addtask')
-	@include ('task.incomplete')
+	@include ('task.complete')
 @endsection
