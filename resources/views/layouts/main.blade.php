@@ -38,5 +38,11 @@
     <br>
 
     @include ('layouts.footer')
+
+    <script>
+      function myFunction() {
+        document.getElementById("demo").innerHTML = document.getElementById("body").innerHTML;
+      }
+    </script>
   </body>
 </html>

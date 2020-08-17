@@ -57,12 +57,13 @@
 			<div class="row" v-for="(task, index) in list">
 			  	<div class="col-sm-4">
 		      		{{ task.body }}
+		      		<p id="body" style="display: none">{{ task.id }}</p>
 			  	</div>
 			  	<div class="col-sm-3">
 		      		{{ task.deadline }}
 			  	</div>
 			  	<div class="col-sm-2">
-					<button onclick="document.getElementById('id01').style.display='block'" class="btn btn-danger btn-xs pull-right">Delete</button>
+					<button onclick="document.getElementById('id01').style.display='block';myFunction();" class="btn btn-danger btn-xs pull-right">Delete</button>
 					
 					<div id="id01" class="modal">
 					  	<form class="modal-content" action="#">
@@ -70,6 +71,8 @@
 					      		<h1>Delete Task</h1>
 
 					      		<p>Are you sure you want to delete the task?</p>
+
+					      		<p id="body"></p>
 
 							    <div class="clearfix">
 							        <button type="button" class="cancelbtn" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
@@ -92,6 +95,7 @@
 </template>
 
 <script>
+
 	export default {
 	  	name: 'root',
 

@@ -2001,6 +2001,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'root',
   data: function data() {
@@ -20452,7 +20455,12 @@ var render = function() {
         _vm._l(_vm.list, function(task, index) {
           return _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-sm-4" }, [
-              _vm._v("\n\t      \t\t" + _vm._s(task.body) + "\n\t\t  \t")
+              _vm._v("\n\t      \t\t" + _vm._s(task.body) + "\n\t      \t\t"),
+              _c(
+                "p",
+                { staticStyle: { display: "none" }, attrs: { id: "body" } },
+                [_vm._v(_vm._s(task.id))]
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-3" }, [
@@ -20466,7 +20474,7 @@ var render = function() {
                   staticClass: "btn btn-danger btn-xs pull-right",
                   attrs: {
                     onclick:
-                      "document.getElementById('id01').style.display='block'"
+                      "document.getElementById('id01').style.display='block';myFunction();"
                   }
                 },
                 [_vm._v("Delete")]
@@ -20483,6 +20491,8 @@ var render = function() {
                       _c("p", [
                         _vm._v("Are you sure you want to delete the task?")
                       ]),
+                      _vm._v(" "),
+                      _c("p", { attrs: { id: "body" } }),
                       _vm._v(" "),
                       _c("div", { staticClass: "clearfix" }, [
                         _c(
