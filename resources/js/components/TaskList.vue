@@ -63,30 +63,36 @@
 		      		{{ task.deadline }}
 			  	</div>
 			  	<div class="col-sm-2">
-					<button onclick="document.getElementById('id01').style.display='block';myFunction();" class="btn btn-danger btn-xs pull-right">Delete</button>
-					
-					<div id="id01" class="modal">
-					  	<form class="modal-content" action="#">
-					    	<div class="container">
-					      		<h1>Delete Task</h1>
+			  		<!-- Button trigger modal -->
+					<button type="button" class="btn btn-danger btn-xs pull-right" data-toggle="modal" :data-target="'#id01' + task.id">
+					  Delete
+					</button>
+					<!-- <button data-toggle="modal" :data-target="'#id01' + task.id" class="btn btn-danger btn-xs pull-right">Delete</button> -->
 
-					      		<p>Are you sure you want to delete the task?</p>
-
-					      		<p id="body"></p>
-
-							    <div class="clearfix">
-							        <button type="button" class="cancelbtn" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
-
-							        <button @click="deleteTask(task.id)" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete
-									</button>
-							    </div>
-					    	</div>
-					  </form>
+					<!-- Modal -->
+					<div class="modal fade" :id="'id01' + task.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  	<div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">Delete Task</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+					      			<p>Are you sure you want to delete the task {{ task.body }} ?</p>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+						        <button type="button" class="btn btn-success" data-dismiss="modal" @click="deleteTask(task.id)">Delete</button>
+						      </div>
+						    </div>
+					  	</div>
 					</div>
 				</div>
 			  	<div class="col-sm-2">
 					<span class="input-group-btn">
-						<button type="submit" class="btn btn-success">Done</button>&nbsp;
+						<button type="button" class="btn btn-success" data-dismiss="modal" @click="updateTask()">Done</button>&nbsp;
 					</span>
 			  	</div>
 			</div>
@@ -95,7 +101,6 @@
 </template>
 
 <script>
-
 	export default {
 	  	name: 'root',
 
@@ -126,6 +131,14 @@
 					.then((res) => {
 						this.task.body = '';
 						this.edit = false;
+						this.fetchTaskList();
+					})
+					.catch((err) => console.error(err));
+			},
+
+			updateTask() {
+				axios.post('/update', this.task)
+					.then((res) => {
 						this.fetchTaskList();
 					})
 					.catch((err) => console.error(err));

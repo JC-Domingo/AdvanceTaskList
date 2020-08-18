@@ -27,7 +27,7 @@ class TaskController extends Controller
         return view('profile.account');
     }
 
-    public function update()
+    public function updateInfo()
     {
         $update = User::where('id', '=', request('id'))->first();
 
@@ -103,6 +103,11 @@ class TaskController extends Controller
     public function index()
     {
         return Task::latest()->get();
+    }
+
+    public function updated(Request $request)
+    {
+        return view('layouts.index');
     }
 
     public function store(Request $request)

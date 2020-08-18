@@ -2004,6 +2004,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'root',
   data: function data() {
@@ -2038,11 +2044,20 @@ __webpack_require__.r(__webpack_exports__);
         return console.error(err);
       });
     },
-    deleteTask: function deleteTask(id) {
+    updateTask: function updateTask() {
       var _this3 = this;
 
-      axios["delete"]('api/tasks/' + id).then(function (res) {
+      axios.post('/update', this.task).then(function (res) {
         _this3.fetchTaskList();
+      })["catch"](function (err) {
+        return console.error(err);
+      });
+    },
+    deleteTask: function deleteTask(id) {
+      var _this4 = this;
+
+      axios["delete"]('api/tasks/' + id).then(function (res) {
+        _this4.fetchTaskList();
       })["catch"](function (err) {
         return console.error(err);
       });
@@ -20473,65 +20488,99 @@ var render = function() {
                 {
                   staticClass: "btn btn-danger btn-xs pull-right",
                   attrs: {
-                    onclick:
-                      "document.getElementById('id01').style.display='block';myFunction();"
+                    type: "button",
+                    "data-toggle": "modal",
+                    "data-target": "#id01" + task.id
                   }
                 },
-                [_vm._v("Delete")]
+                [_vm._v("\n\t\t\t\t  Delete\n\t\t\t\t")]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "modal", attrs: { id: "id01" } }, [
-                _c(
-                  "form",
-                  { staticClass: "modal-content", attrs: { action: "#" } },
-                  [
-                    _c("div", { staticClass: "container" }, [
-                      _c("h1", [_vm._v("Delete Task")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v("Are you sure you want to delete the task?")
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { attrs: { id: "body" } }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "clearfix" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "cancelbtn",
-                            attrs: {
-                              type: "button",
-                              onclick:
-                                "document.getElementById('id01').style.display='none'"
-                            }
-                          },
-                          [_vm._v("Cancel")]
-                        ),
+              _c(
+                "div",
+                {
+                  staticClass: "modal fade",
+                  attrs: {
+                    id: "id01" + task.id,
+                    tabindex: "-1",
+                    role: "dialog",
+                    "aria-labelledby": "exampleModalLabel",
+                    "aria-hidden": "true"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-dialog",
+                      attrs: { role: "document" }
+                    },
+                    [
+                      _c("div", { staticClass: "modal-content" }, [
+                        _vm._m(7, true),
                         _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "deletebtn",
-                            attrs: {
-                              onclick:
-                                "document.getElementById('id01').style.display='none'"
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c("p", [
+                            _vm._v(
+                              "Are you sure you want to delete the task " +
+                                _vm._s(task.body) +
+                                " ?"
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-footer" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button", "data-dismiss": "modal" }
                             },
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteTask(task.id)
+                            [_vm._v("Cancel")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              attrs: {
+                                type: "button",
+                                "data-dismiss": "modal"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteTask(task.id)
+                                }
                               }
-                            }
-                          },
-                          [_vm._v("Delete\n\t\t\t\t\t\t\t\t")]
-                        )
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        ])
                       ])
-                    ])
-                  ]
-                )
-              ])
+                    ]
+                  )
+                ]
+              )
             ]),
             _vm._v(" "),
-            _vm._m(7, true)
+            _c("div", { staticClass: "col-sm-2" }, [
+              _c("span", { staticClass: "input-group-btn" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: {
+                      click: function($event) {
+                        return _vm.updateTask()
+                      }
+                    }
+                  },
+                  [_vm._v("Done")]
+                ),
+                _vm._v(" \n\t\t\t\t")
+              ])
+            ])
           ])
         })
       ],
@@ -20602,15 +20651,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-2" }, [
-      _c("span", { staticClass: "input-group-btn" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-success", attrs: { type: "submit" } },
-          [_vm._v("Done")]
-        ),
-        _vm._v(" \n\t\t\t\t")
-      ])
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Delete Task")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
     ])
   }
 ]
