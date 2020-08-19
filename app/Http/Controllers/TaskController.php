@@ -107,7 +107,12 @@ class TaskController extends Controller
 
     public function updated(Request $request)
     {
-        return view('layouts.index');
+        $task = Task::findOrFail(request('id'));
+
+        $task->done = TRUE;
+        $task->save();
+
+        return redirect('/');
     }
 
     public function store(Request $request)
@@ -117,11 +122,11 @@ class TaskController extends Controller
             'deadline' => 'required'
         ]);
 
-        auth()->user()->publish(
+        auth()->user()->add(
             new Task(request(['body','deadline']))
         );
 
-        return redirect('/');
+        return back();
     }
 
     public function destroy($id)
