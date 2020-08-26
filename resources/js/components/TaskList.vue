@@ -108,8 +108,6 @@
 
 <script>
 	export default {
-	  	name: 'root',
-
 		data() {
 			return {
 				list: [],
