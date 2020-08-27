@@ -112,6 +112,17 @@ class TaskController extends Controller
         $task->done = TRUE;
         $task->save();
 
+        return back();
+    }
+
+
+    public function undotask(Request $request)
+    {
+        $task = Task::findOrFail(request('id'));
+
+        $task->done = FALSE;
+        $task->save();
+
         return redirect('/');
     }
 

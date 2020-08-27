@@ -22,11 +22,12 @@ Route::post('/profile','TaskController@updateInfo');
 Route::get('/changepass','TaskController@changepass');
 Route::post('/changepass','TaskController@updatePass');
 Route::post('/update','TaskController@updated');
+Route::post('/undo','TaskController@undotask');
 
 Route::get('/signup','SignUpController@create');
 Route::post('/signup','SignUpController@sign');
 
-Route::get('/login','SessionController@login');
+Route::get('/login','SessionController@login')->name('login');
 Route::post('/login','SessionController@store');
 Route::get('/logout','SessionController@destroy');
 

@@ -28,7 +28,7 @@
       </div>
     @endif  
 
-    <div class="container">
+    <div class="container" id="root">
       <div class="row">
         @yield('content')
       </div>
@@ -46,5 +46,7 @@
     <!-- Custom styles for this template -->
     <link href="/css/app.css" rel="stylesheet">
     <script>window.Laravel = { csrfToken: '{{ csrf_token() }}' }</script>
+    
+    <script src="/js/app.js"></script>
   </body>
 </html>

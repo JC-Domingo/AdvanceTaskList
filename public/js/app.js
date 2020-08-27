@@ -1916,6 +1916,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'root',
   data: function data() {
@@ -1927,6 +1992,40 @@ __webpack_require__.r(__webpack_exports__);
         body: ''
       }
     };
+  },
+  created: function created() {
+    this.fetchTaskList();
+  },
+  methods: {
+    fetchTaskList: function fetchTaskList() {
+      var _this = this;
+
+      axios.get('api/tasks').then(function (res) {
+        _this.list = res.data;
+      });
+    },
+    undoTask: function undoTask(id) {
+      var _this2 = this;
+
+      axios.post('/undo', {
+        id: id
+      }).then(function (res) {
+        _this2.task.id = id;
+
+        _this2.fetchTaskList();
+      })["catch"](function (err) {
+        return console.error(err);
+      });
+    },
+    deleteTask: function deleteTask(id) {
+      var _this3 = this;
+
+      axios["delete"]('api/tasks/' + id).then(function (res) {
+        _this3.fetchTaskList();
+      })["catch"](function (err) {
+        return console.error(err);
+      });
+    }
   }
 });
 
@@ -19759,17 +19858,198 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "div",
+      { staticStyle: { "border-style": "solid", padding: "5%" } },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm.list.length !== 0
+          ? _c("div", { staticClass: "row" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-2" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-2" }),
+              _vm._v(" \n\t\t")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm._l(_vm.list, function(task, index) {
+          return task.done === 1
+            ? _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-4" }, [
+                  _vm._v("\n\t\t     \t" + _vm._s(task.body) + "\n\t\t     \t"),
+                  _c("p", { staticStyle: { display: "none" } }, [
+                    _vm._v(_vm._s(_vm.i++))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-3" }, [
+                  _vm._v("\n\t\t      \t" + _vm._s(task.deadline) + "\n\t\t\t")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-2" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger btn-xs pull-right",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "modal",
+                        "data-target": "#id02" + task.id
+                      }
+                    },
+                    [_vm._v("\n\t\t\t\t\tDelete\n\t\t\t\t")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal fade",
+                      attrs: {
+                        id: "id02" + task.id,
+                        tabindex: "-1",
+                        role: "dialog",
+                        "aria-labelledby": "exampleModalLabel",
+                        "aria-hidden": "true"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "modal-dialog",
+                          attrs: { role: "document" }
+                        },
+                        [
+                          _c("div", { staticClass: "modal-content" }, [
+                            _vm._m(3, true),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "modal-body" }, [
+                              _c("p", [
+                                _vm._v(
+                                  "Are you sure you want to delete the task " +
+                                    _vm._s(task.body) +
+                                    " ?"
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "modal-footer" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  attrs: {
+                                    type: "button",
+                                    "data-dismiss": "modal"
+                                  }
+                                },
+                                [_vm._v("Cancel")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-success",
+                                  attrs: {
+                                    type: "button",
+                                    "data-dismiss": "modal"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.deleteTask(task.id)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Delete")]
+                              )
+                            ])
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-2" }, [
+                  _c("span", { staticClass: "input-group-btn" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                        on: {
+                          click: function($event) {
+                            return _vm.undoTask(task.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Undo")]
+                    ),
+                    _vm._v(" \n\t\t\t\t")
+                  ])
+                ])
+              ])
+            : _vm._e()
+        }),
+        _vm._v(" "),
+        _vm.i === 0 ? _c("li", [_vm._v("There are no tasks yet!")]) : _vm._e()
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticStyle: { "border-style": "solid", padding: "5%" } }, [
-        _vm._v("\n\t\tYES\n\t")
-      ])
+    return _c("h2", [_c("b", [_vm._v("Complete Tasks")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-4" }, [
+      _c("h5", [_c("b", [_vm._v("Task")])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3" }, [
+      _c("h5", [_c("b", [_vm._v("Deadline")])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Delete Task")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
     ])
   }
 ]
@@ -32296,7 +32576,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('task-list', _components_TaskList_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('complete', _components_Complete_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
-var root = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
+new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#root'
 });
 
@@ -32338,15 +32618,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!**********************************************!*\
   !*** ./resources/js/components/Complete.vue ***!
   \**********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Complete_vue_vue_type_template_id_01bf0224___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Complete.vue?vue&type=template&id=01bf0224& */ "./resources/js/components/Complete.vue?vue&type=template&id=01bf0224&");
 /* harmony import */ var _Complete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Complete.vue?vue&type=script&lang=js& */ "./resources/js/components/Complete.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Complete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Complete_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -32376,7 +32655,7 @@ component.options.__file = "resources/js/components/Complete.vue"
 /*!***********************************************************************!*\
   !*** ./resources/js/components/Complete.vue?vue&type=script&lang=js& ***!
   \***********************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
