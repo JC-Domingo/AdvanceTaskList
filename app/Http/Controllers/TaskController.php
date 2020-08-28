@@ -108,7 +108,7 @@ class TaskController extends Controller
     public function updated(Request $request)
     {
         $task = Task::findOrFail(request('id'));
-
+        
         $task->done = TRUE;
         $task->save();
 

@@ -8,26 +8,15 @@
 			  	<div class="col-sm-4">
 		  			<h5><b>Task</b></h5>
 			  	</div>
-			  	<div class="col-sm-3">
-		  			<h5><b>Deadline</b></h5>
-			  	</div>
-			  	<div class="col-sm-2">
-				</div>
-			  	<div class="col-sm-2">
-			  	</div>&nbsp;
+			  	&nbsp;
 			</div>
 
 			<div class="row" v-for="(task, index) in list"  v-if='task.done === 1'>
-				<div class="col-sm-4">
+				<div class="col-sm-6">
 			     	{{ task.body }}
 			     	<p style="display: none">{{ i++ }}</p>
 				</div>
-
-				<div class="col-sm-3">
-			      	{{ task.deadline }}
-				</div>
-				  	
-				<div class="col-sm-2">
+				<div class="col-sm-3" style="text-align: center;">
 				  	<!-- Button trigger modal -->
 					<button type="button" class="btn btn-danger btn-xs pull-right" data-toggle="modal" :data-target="'#id02' + task.id">
 						Delete
@@ -91,8 +80,8 @@
 		},
 
 		mounted() {
-			bus.$on('task_update', ()=> {
- 				this.fetchTasks();
+			bus.$on('task_updated', ()=> {
+ 				this.fetchTaskList();
 			})
 		},
 
@@ -112,6 +101,7 @@
 					.then((res) => {
 						this.task.id = id;
 						this.fetchTaskList();
+						bus.$emit('task_redo');
 					})
 					.catch((err) => console.error(err));
 			},

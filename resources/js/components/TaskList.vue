@@ -43,26 +43,60 @@
 			  	<div class="col-sm-4">
 		  			<h5><b>Task</b></h5>
 			  	</div>
-			  	<div class="col-sm-3">
-		  			<h5><b>Deadline</b></h5>
-			  	</div>
-			  	<div class="col-sm-2">
-				</div>
-			  	<div class="col-sm-2">
-			  	</div>&nbsp;
+			  	&nbsp;
 			</div>
 
-			<div class="row" v-for="(task, index) in list"  v-if='task.done === 0'>
+			<div class="row" v-for="(task, index) in list" v-if='task.done === 0'>
 				<div class="col-sm-4">
 			     	{{ task.body }}
 			     	<p style="display: none">{{ i++ }}</p>
 				</div>
 
-				<div class="col-sm-3">
-			      	{{ task.deadline }}
+				<div class="col-sm-2">
+				  	<!-- Button trigger modal -->
+					<button type="button" class="btn btn-info btn-xs pull-right" data-toggle="modal" :data-target="'#id03' + task.id">
+						Edit
+					</button>
+
+					<!-- Modal -->
+					<div class="modal fade" :id="'id03' + task.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+							    	<h5 class="modal-title" id="exampleModalLabel">Edit Task</h5>
+							        
+							    	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							        	<span aria-hidden="true">&times;</span>
+							    	</button>
+								</div>
+
+								<div class="modal-body">
+									<div class="input-group">
+										<input v-model="task.body" type="text" name="body" class="form-control" autofocus>
+									</div>
+
+									<br>
+
+									<div class="input-group">
+							  			<h5><b>Set Deadline:</b></h5>
+									</div>
+
+									<div class="input-group">
+										<input v-model="task.deadline" type="date" name='birthdate' class="form-control" autofocus required>
+									</div>
+								</div>
+
+			  			        <div class="modal-footer">
+							        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+		
+							        <button type="button" class="btn btn-success" data-dismiss="modal" @click="">Apply Changes</button>
+							    </div>
+							</div>
+					  	</div>
+					</div>
 				</div>
 				  	
-				<div class="col-sm-2">
+				<div class="col-sm-3" style="text-align: center;">
 				  	<!-- Button trigger modal -->
 					<button type="button" class="btn btn-danger btn-xs pull-right" data-toggle="modal" :data-target="'#id01' + task.id">
 						Delete
@@ -123,6 +157,12 @@
 					body: ''
 				}
 			};
+		},
+
+		mounted() {
+			bus.$on('task_redo', ()=> {
+ 				this.fetchTaskList();
+			})
 		},
 
 		created() {
