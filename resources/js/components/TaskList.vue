@@ -107,6 +107,8 @@
 </template>
 
 <script>
+	import { bus } from '../bus.js';
+
 	export default {
 	  	name: 'root',
 
@@ -149,6 +151,7 @@
 					.then((res) => {
 						this.task.id = id;
 						this.fetchTaskList();
+						bus.$emit('task_updated');
 					})
 					.catch((err) => console.error(err));
 			},

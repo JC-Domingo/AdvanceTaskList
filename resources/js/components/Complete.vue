@@ -72,6 +72,8 @@
 </template>
 
 <script>
+	import { bus } from '../bus.js';
+
 	export default {
 	  	name: 'root',
 
@@ -86,6 +88,12 @@
 					body: ''
 				}
 			};
+		},
+
+		mounted() {
+			bus.$on('task_update', ()=> {
+ 				this.fetchTasks();
+			})
 		},
 
 		created() {

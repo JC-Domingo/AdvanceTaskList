@@ -1908,6 +1908,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _bus_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../bus.js */ "./resources/js/bus.js");
 //
 //
 //
@@ -1981,6 +1982,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'root',
   data: function data() {
@@ -1993,35 +1995,42 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    _bus_js__WEBPACK_IMPORTED_MODULE_0__["bus"].$on('task_update', function () {
+      _this.fetchTasks();
+    });
+  },
   created: function created() {
     this.fetchTaskList();
   },
   methods: {
     fetchTaskList: function fetchTaskList() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get('api/tasks').then(function (res) {
-        _this.list = res.data;
+        _this2.list = res.data;
       });
     },
     undoTask: function undoTask(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.post('/undo', {
         id: id
       }).then(function (res) {
-        _this2.task.id = id;
+        _this3.task.id = id;
 
-        _this2.fetchTaskList();
+        _this3.fetchTaskList();
       })["catch"](function (err) {
         return console.error(err);
       });
     },
     deleteTask: function deleteTask(id) {
-      var _this3 = this;
+      var _this4 = this;
 
       axios["delete"]('api/tasks/' + id).then(function (res) {
-        _this3.fetchTaskList();
+        _this4.fetchTaskList();
       })["catch"](function (err) {
         return console.error(err);
       });
@@ -2040,6 +2049,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _bus_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../bus.js */ "./resources/js/bus.js");
 //
 //
 //
@@ -2148,6 +2158,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'root',
   data: function data() {
@@ -2192,6 +2203,8 @@ __webpack_require__.r(__webpack_exports__);
         _this3.task.id = id;
 
         _this3.fetchTaskList();
+
+        _bus_js__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('task_updated');
       })["catch"](function (err) {
         return console.error(err);
       });
@@ -32611,6 +32624,21 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/bus.js":
+/*!*****************************!*\
+  !*** ./resources/js/bus.js ***!
+  \*****************************/
+/*! exports provided: bus, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bus", function() { return bus; });
+var bus = new Vue();
+/* harmony default export */ __webpack_exports__["default"] = (bus);
 
 /***/ }),
 
