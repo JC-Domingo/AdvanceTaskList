@@ -49,7 +49,7 @@
 				<input type="hidden" name="id" value="{{ Auth::user()->id }}">
 
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Save Changes	</button>
+					<button type="submit" class="btn btn-primary">Save Changes</button>
 				</div>
 
 				@include ('layouts.errors')

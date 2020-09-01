@@ -22,6 +22,7 @@ Route::post('/profile','TaskController@updateInfo');
 Route::get('/changepass','TaskController@changepass');
 Route::post('/changepass','TaskController@updatePass');
 Route::post('/update','TaskController@updated');
+Route::post('/edit','TaskController@edit');
 Route::post('/undo','TaskController@undotask');
 
 Route::get('/signup','SignUpController@create');

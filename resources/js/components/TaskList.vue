@@ -20,7 +20,17 @@
 				</div>
 
 				<div class="input-group">
-					<input v-model="task.deadline" type="date" name='birthdate' class="form-control" autofocus required>
+					<input v-model="task.deadline" type="date" name='deadline' class="form-control" autofocus required>
+				</div>
+
+				<br>
+
+				<div class="input-group">
+		  			<h5><b>Set Time:</b></h5>
+				</div>
+
+				<div class="input-group">
+					<input v-model="task.time" type="time" name='time' class="form-control" autofocus required>
 				</div>
 
 				<br>
@@ -70,27 +80,49 @@
 							    	</button>
 								</div>
 
-								<div class="modal-body">
-									<div class="input-group">
-										<input v-model="task.body" type="text" name="body" class="form-control" autofocus>
-									</div>
+								<form action="#" @submit.prevent="editTask(task.id)">
+									<div class="modal-body">
+										<div class="input-group">
+								  			<h5><b>Task:</b></h5>
+										</div>
 
-									<br>
+										<div class="input-group">
+											<input type="text" name="body" class="form-control" autofocus>
+										</div>
 
-									<div class="input-group">
-							  			<h5><b>Set Deadline:</b></h5>
-									</div>
+										<br>
 
-									<div class="input-group">
-										<input v-model="task.deadline" type="date" name='birthdate' class="form-control" autofocus required>
+										<div class="input-group">
+								  			<h5><b>Set Deadline:</b></h5>
+										</div>
+
+										<div class="input-group">
+											<input type="date" name='deadline' class="form-control" autofocus required>
+										</div>
+
+										<br>
+
+										<div class="input-group">
+								  			<h5><b>Set Time:</b></h5>
+										</div>
+
+										<div class="input-group">
+											<input type="time" name='time' class="form-control" autofocus required>
+										</div>
+
+										<br>
+
+										<div class="input-group">
+											<span class="input-group-btn">
+								        		<button type="button" class="btn btn-success" data-dismiss="modal">Apply Changes</button>
+											</span>
+										</div>
 									</div>
-								</div>
+								</form>
 
 			  			        <div class="modal-footer">
-							        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-		
-							        <button type="button" class="btn btn-success" data-dismiss="modal" @click="">Apply Changes</button>
 							    </div>
+
 							</div>
 					  	</div>
 					</div>
@@ -181,6 +213,15 @@
 					.then((res) => {
 						this.task.body = '';
 						this.edit = false;
+						this.fetchTaskList();
+					})
+					.catch((err) => console.error(err));
+			},
+
+			editTask(id) {
+				axios.post('/edit', {id: id})
+					.then((res) => {
+						this.task.id = id;
 						this.fetchTaskList();
 					})
 					.catch((err) => console.error(err));
