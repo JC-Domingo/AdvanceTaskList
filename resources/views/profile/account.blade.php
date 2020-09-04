@@ -18,7 +18,6 @@
 
 		&nbsp;
 
-
     	<div style="border-style: solid; padding: 5%;">
 	    	<h2><b>Update User Information</b></h2>
 
@@ -29,7 +28,6 @@
 					<label for="firstname">First Name:</label>
 				    <input type="text" class="form-control" id="firstname" name='firstname'>
 				</div>
-
 
 				<div class="form-group">
 					<label for="lastname">Last Name:</label>

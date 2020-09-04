@@ -143,20 +143,7 @@ class TaskController extends Controller
 
     public function edit(Request $request)
     {
-        $this->validate($request, [
-            'body' => 'required|max:500',
-            'deadline' => 'required',
-            'time' => 'required'
-        ]);
-
-        $task = Task::findOrFail(request('id'));
-
-        $task->body = request('body');
-        $task->deadline = request('deadline');
-        $task->time = request('time');
-        $task->save();
-
-        return back();
+        return view('layouts.index');
     }
 
     public function destroy($id)

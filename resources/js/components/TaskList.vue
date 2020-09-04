@@ -63,69 +63,9 @@
 				</div>
 
 				<div class="col-sm-2">
-				  	<!-- Button trigger modal -->
-					<button type="button" class="btn btn-info btn-xs pull-right" data-toggle="modal" :data-target="'#id03' + task.id">
-						Edit
-					</button>
-
-					<!-- Modal -->
-					<div class="modal fade" :id="'id03' + task.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-							    	<h5 class="modal-title" id="exampleModalLabel">Edit Task</h5>
-							        
-							    	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							        	<span aria-hidden="true">&times;</span>
-							    	</button>
-								</div>
-
-								<form action="#" @submit.prevent="editTask(task.id)">
-									<div class="modal-body">
-										<div class="input-group">
-								  			<h5><b>Task:</b></h5>
-										</div>
-
-										<div class="input-group">
-											<input type="text" name="body" class="form-control" autofocus>
-										</div>
-
-										<br>
-
-										<div class="input-group">
-								  			<h5><b>Set Deadline:</b></h5>
-										</div>
-
-										<div class="input-group">
-											<input type="date" name='deadline' class="form-control" autofocus required>
-										</div>
-
-										<br>
-
-										<div class="input-group">
-								  			<h5><b>Set Time:</b></h5>
-										</div>
-
-										<div class="input-group">
-											<input type="time" name='time' class="form-control" autofocus required>
-										</div>
-
-										<br>
-
-										<div class="input-group">
-											<span class="input-group-btn">
-								        		<button type="button" class="btn btn-success" data-dismiss="modal">Apply Changes</button>
-											</span>
-										</div>
-									</div>
-								</form>
-
-			  			        <div class="modal-footer">
-							    </div>
-
-							</div>
-					  	</div>
-					</div>
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-primary" data-dismiss="modal" @click="editTask(task.id)">Edit</button>&nbsp;
+					</span>
 				</div>
 				  	
 				<div class="col-sm-3" style="text-align: center;">
@@ -186,7 +126,9 @@
 
 				task: {
 					id: '',
-					body: ''
+					body: '',
+					deadline: '',
+					time: ''
 				}
 			};
 		},

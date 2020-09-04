@@ -2155,66 +2155,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'root',
@@ -2224,7 +2164,9 @@ __webpack_require__.r(__webpack_exports__);
       i: 0,
       task: {
         id: '',
-        body: ''
+        body: '',
+        deadline: '',
+        time: ''
       }
     };
   },
@@ -20294,62 +20236,22 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-sm-2" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info btn-xs pull-right",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "modal",
-                        "data-target": "#id03" + task.id
-                      }
-                    },
-                    [_vm._v("\n\t\t\t\t\tEdit\n\t\t\t\t")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "modal fade",
-                      attrs: {
-                        id: "id03" + task.id,
-                        tabindex: "-1",
-                        role: "dialog",
-                        "aria-labelledby": "exampleModalLabel",
-                        "aria-hidden": "true"
-                      }
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "modal-dialog",
-                          attrs: { role: "document" }
-                        },
-                        [
-                          _c("div", { staticClass: "modal-content" }, [
-                            _vm._m(7, true),
-                            _vm._v(" "),
-                            _c(
-                              "form",
-                              {
-                                attrs: { action: "#" },
-                                on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.editTask(task.id)
-                                  }
-                                }
-                              },
-                              [_vm._m(8, true)]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "modal-footer" })
-                          ])
-                        ]
-                      )
-                    ]
-                  )
+                  _c("span", { staticClass: "input-group-btn" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button", "data-dismiss": "modal" },
+                        on: {
+                          click: function($event) {
+                            return _vm.editTask(task.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Edit")]
+                    ),
+                    _vm._v(" \n\t\t\t\t")
+                  ])
                 ]),
                 _vm._v(" "),
                 _c(
@@ -20393,7 +20295,7 @@ var render = function() {
                           },
                           [
                             _c("div", { staticClass: "modal-content" }, [
-                              _vm._m(9, true),
+                              _vm._m(7, true),
                               _vm._v(" "),
                               _c("div", { staticClass: "modal-body" }, [
                                 _c("p", [
@@ -20528,89 +20430,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-4" }, [
       _c("h5", [_c("b", [_vm._v("Task")])])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Edit Task")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("div", { staticClass: "input-group" }, [
-        _c("h5", [_c("b", [_vm._v("Task:")])])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", name: "body", autofocus: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("h5", [_c("b", [_vm._v("Set Deadline:")])])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "date", name: "deadline", autofocus: "", required: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("h5", [_c("b", [_vm._v("Set Time:")])])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "time", name: "time", autofocus: "", required: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group" }, [
-        _c("span", { staticClass: "input-group-btn" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-success",
-              attrs: { type: "button", "data-dismiss": "modal" }
-            },
-            [_vm._v("Apply Changes")]
-          )
-        ])
-      ])
     ])
   },
   function() {
