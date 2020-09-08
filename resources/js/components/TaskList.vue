@@ -10,7 +10,7 @@
 				</div>
 
 				<div class="input-group">
-					<input v-model="task.body" type="text" name="body" class="form-control" autofocus>
+					<input v-model="task.body" type="text" name="body" class="form-control" autofocus required>
 				</div>
 
 				<br>
@@ -64,7 +64,10 @@
 
 				<div class="col-sm-2">
 					<span class="input-group-btn">
-						<button type="button" class="btn btn-primary" data-dismiss="modal" @click="editTask(task.id)">Edit</button>&nbsp;
+						<form method="GET" action="/edit">
+						    <input type="hidden" name="taskid" :value="task.id">
+							<button type="submit" class="btn btn-primary">Edit</button>&nbsp;
+						</form>
 					</span>
 				</div>
 				  	
@@ -155,15 +158,6 @@
 					.then((res) => {
 						this.task.body = '';
 						this.edit = false;
-						this.fetchTaskList();
-					})
-					.catch((err) => console.error(err));
-			},
-
-			editTask(id) {
-				axios.post('/edit', {id: id})
-					.then((res) => {
-						this.task.id = id;
 						this.fetchTaskList();
 					})
 					.catch((err) => console.error(err));

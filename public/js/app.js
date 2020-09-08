@@ -2155,6 +2155,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'root',
@@ -2200,28 +2203,15 @@ __webpack_require__.r(__webpack_exports__);
         return console.error(err);
       });
     },
-    editTask: function editTask(id) {
+    updateTask: function updateTask(id) {
       var _this4 = this;
 
-      axios.post('/edit', {
+      axios.post('/update', {
         id: id
       }).then(function (res) {
         _this4.task.id = id;
 
         _this4.fetchTaskList();
-      })["catch"](function (err) {
-        return console.error(err);
-      });
-    },
-    updateTask: function updateTask(id) {
-      var _this5 = this;
-
-      axios.post('/update', {
-        id: id
-      }).then(function (res) {
-        _this5.task.id = id;
-
-        _this5.fetchTaskList();
 
         _bus_js__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('task_updated');
       })["catch"](function (err) {
@@ -2229,10 +2219,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteTask: function deleteTask(id) {
-      var _this6 = this;
+      var _this5 = this;
 
       axios["delete"]('api/tasks/' + id).then(function (res) {
-        _this6.fetchTaskList();
+        _this5.fetchTaskList();
       })["catch"](function (err) {
         return console.error(err);
       });
@@ -20124,7 +20114,12 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "text", name: "body", autofocus: "" },
+              attrs: {
+                type: "text",
+                name: "body",
+                autofocus: "",
+                required: ""
+              },
               domProps: { value: _vm.task.body },
               on: {
                 input: function($event) {
@@ -20237,20 +20232,22 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "col-sm-2" }, [
                   _c("span", { staticClass: "input-group-btn" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { type: "button", "data-dismiss": "modal" },
-                        on: {
-                          click: function($event) {
-                            return _vm.editTask(task.id)
-                          }
-                        }
-                      },
-                      [_vm._v("Edit")]
-                    ),
-                    _vm._v(" \n\t\t\t\t")
+                    _c("form", { attrs: { method: "GET", action: "/edit" } }, [
+                      _c("input", {
+                        attrs: { type: "hidden", name: "taskid" },
+                        domProps: { value: task.id }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("Edit")]
+                      ),
+                      _vm._v(" \n\t\t\t\t\t")
+                    ])
                   ])
                 ]),
                 _vm._v(" "),

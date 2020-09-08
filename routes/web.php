@@ -15,14 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','TaskController@main')->name('home');	
 Route::get('/home','TaskController@main');	
-Route::get('/task','TaskController@tasks');
+Route::get('/task','TaskController@tasks')->name('task');
 
 Route::get('/profile','TaskController@profile');
 Route::post('/profile','TaskController@updateInfo');
 Route::get('/changepass','TaskController@changepass');
 Route::post('/changepass','TaskController@updatePass');
 Route::post('/update','TaskController@updated');
-Route::post('/edit','TaskController@edit');
+Route::get('/edit','TaskController@edit');
+Route::post('/edits','TaskController@editTask');
 Route::post('/undo','TaskController@undotask');
 
 Route::get('/signup','SignUpController@create');

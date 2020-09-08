@@ -141,9 +141,30 @@ class TaskController extends Controller
         return back();
     }
 
-    public function edit(Request $request)
+    public function edit()
     {
-        return view('layouts.index');
+        $task = Task::findOrFail(request('taskid'));
+
+        return view('task.edittask', compact('task'));
+    }
+
+    public function editTask()
+    {
+        $task = Task::findOrFail(request('taskid'));
+
+        $this->validate(request(), [
+            'body' => 'required',
+            'deadline' => 'required',
+            'time' => 'required',
+        ]);
+
+        $task->body = request('body');
+        $task->deadline = request('deadline');
+        $task->time = request('time');
+
+        $task->save();
+
+        return redirect()->route('task');
     }
 
     public function destroy($id)
